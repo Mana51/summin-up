@@ -9,7 +9,7 @@ development:
 
 production:
   <<: *default
-  host: dpg-ck0r1e1jbtgs73cnkaj0-a
-  database: s_original_rdrq
-  username: s_original_rdrq_user
-  password: nXDmTCDESjCdhKDUOYyMCXtDdqG4Fsmz
+  host: dpg-ck0rlcb6fquc73a8oiog-a
+  database: s_english
+  username: s_english_user
+  password: oiZp2AHo8J0SP6WwB4b0NQ9fkLjOX984
