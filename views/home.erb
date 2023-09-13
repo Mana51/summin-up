@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/home.css">
+
+<div class="body">
+    <h1>Look for an article to summarize:</h1>
+    <div class="filterButton">
+        <span class="link-content">
+            <a class="nav-link" id="filter" href="/filter"><img class="filter-img" src="img/filter.png" alt="Filter Icon" /> Filter</a><br>
+        </span>
+    </div>
+        <div class="posts-section">
+            <% @posts.each do |post| %>
+            <div class="post display" id="past-post">
+                <a href="/home/<%= post.id %>">
+                <div class="black-bottom-border">                        
+                    <% summaryNum = Summary.where(post_id: post.id).count %>
+                    <p class="summaryNum">Summaries: <%= summaryNum %></p>
+                    <p class="info">Keyword: <%= post.keyword %></p>
+                    <% dif = Difficulty.find_by(id: post.difficulty_id) %>
+                    <p class="info">Difficulty: <%= dif.difficulty %></p>
+                    <% len = Length.find_by(id: post.length_id) %>
+                    <p class="info">Length: <%= len.length %></p>
+                </div>
+                <%= post.content %>
+            </a>
+            <br>            
+        </div>
+        <% end %>
+    </div>
+</div>

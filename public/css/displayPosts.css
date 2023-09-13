@@ -1,0 +1,78 @@
+.text {
+    float: left;
+    width: 50%;
+    padding: 20px;
+    background-color: #F5F5F5;
+    height: calc(100vh - 78px);
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.summary-section {
+    float: right;
+    width: 50%;
+    height: calc(100vh - 78px);
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+
+.summaries {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#new-summary {
+    position: relative;
+    top: 30px;
+    background-color: #DEEFFF;
+    border-radius: 30px;
+    padding: 15px 30px;
+    border: solid;
+    border-width: thin;
+    margin: 0px 10px 0px 10px;
+}
+
+#new-summary-area {
+    height: 85px;
+}
+
+#new-summary:hover {
+    font-weight: bold;
+}
+
+#like {
+    float: right;
+    margin-right: 10px;
+}
+
+.heart {
+    width: 20px;
+    float: right;
+    margin: 10px 5px 10px 0px;
+}
+
+
+.likes-number {
+    float: right;
+    margin: 8px 15px 10px 0px;
+}
+
+#likes-num {
+    float: right;
+    margin-right: 15px;
+}
+
+.delete {
+    float: right;
+    width: 25px;
+    margin-right: 20px;
+    margin-top: 8px;
+}
+
+.edit {
+    float: right;
+    width: 22px;
+    margin-right: 20px;
+    margin-top: 8px;
+}

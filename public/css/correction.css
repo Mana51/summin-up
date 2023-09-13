@@ -1,0 +1,9 @@
+.original-summary-area {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background-color: #f5f5f5;
+  float: left;
+  width: 48%;
+  padding: 11px;
+}

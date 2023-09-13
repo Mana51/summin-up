@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="/css/filtered.css">
+
+<div class="body">
+    <h1>Look for an article to summarize:</h1>
+    <div class="filterButton">
+        <a class="nav-link nav-button" id="filter" href="/filter">Filter</a><br>
+    </div>
+    <div class="posts-section">
+        <% if @matches.empty? %>
+            <p id="filteredText">No matches found.</p>
+        <% else %>
+            <% @matches.each do |match| %>
+                <div class="post display" id="past-post">
+                  <a href="/home/<%= match['id'] %>"> <!-- Use hash syntax to access 'id' -->
+                    <div class="black-bottom-border">
+                      <% summaryNum = Summary.where(post_id: match['id']).count %>
+                      <p class="summaryNum">Summaries: <%= summaryNum %></p>
+                      <p class="info">Keyword: <%= match['keyword'] %></p>
+                      <% dif = Difficulty.find_by(id: match['difficulty_id']) %>
+                      <p class="info">Difficulty: <%= dif.difficulty %></p>
+                      <% len = Length.find_by(id: match['length_id']) %>
+                      <p class="info">Length: <%= len.length %></p>
+                    </div>
+                    <%= match['content'] %>
+                  </a>
+                  <br>            
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

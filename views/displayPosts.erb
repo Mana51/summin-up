@@ -1,0 +1,122 @@
+<link rel="stylesheet" href="/css/displayPosts.css">
+
+<div class="body dsiplay-posts">
+    <div class="text grey-background">
+        <div class="black-bottom-border">
+            <p class="info">Keyword: <%= @post.keyword %></p><br>
+            <p class="info">Difficulty: <%= Difficulty.find_by(id: @post.difficulty_id).difficulty %></p><br>
+            <p class="info">Length: <%= Length.find_by(id: @post.length_id).length %></p><br>
+        </div>
+        <p><%= @post.content %></p>
+    </div>
+    
+    
+    <div class="summary-section">
+        <div class="bottom-border" id="new-summary-area">
+            <a id="new-summary" href="/new-summary/<%= @post.id %>">Post summary</a><br>        
+        </div>
+        <% @userSummary.each do |sum| %>
+            <div class="summaries bottom-border ">
+              <% summaryLike = Like.where(summary_id: sum.id).count %>
+              <p id="likes-num-<%= sum.id %>" class="likes-number"><%= summaryLike %></p>
+                <% if Like.find_by(summary_id: sum.id, user_id: @user).nil? %>
+                    <input class="heart" id="<%= sum.id %>" type="image" src="/img/heart-outline.png">
+                <% else %>
+                     <input class="heart"  id="<%= sum.id %>" type="image" src="/img/heart-filled.png">
+                <% end %>
+                <input class="delete"  id="<%= sum.id %>" type="image" src="/img/delete.png">
+                <a href="/summary/<%= sum.id %>/edit"><img class="edit" src="/img/edit.png"></a>
+                <p class="summary-title"><%= sum.title %></p><br>
+                <p class="summary-content"><%= sum.summary %></p>
+            </div>
+        <% end %>
+        <% @postedSummary.each do |sum| %>
+            <div class="summaries bottom-border">
+              <% summaryLike = Like.where(summary_id: sum.id).count %>
+              <p id="likes-num-<%= sum.id %>" class="likes-number"><%= summaryLike %></p>
+                <% if Like.find_by(summary_id: sum.id, user_id: @user).nil? %>
+                    <input class="heart" id="<%= sum.id %>" type="image" src="/img/heart-outline.png">
+                <% else %>
+                     <input class="heart"  id="<%= sum.id %>" type="image" src="/img/heart-filled.png">
+                <% end %>
+                <p class="summary-title"><%= sum.title %></p><br>
+                <p class="summary-content"><%= sum.summary %></p>
+            </div>
+        <% end %>
+    </div>
+</div>
+
+<script>
+
+$(document).ready(function() {
+    // console.log("画面読み込み");
+    
+    $(".heart").on("click", function(){
+        // console.log("いいねが押されました。");
+        var id = $(this).attr("id");
+        var url = '/likes/' + id;
+        // console.log(url);
+        
+        $.ajax({
+            url: url,
+            method: "POST",
+            success: function(response){
+                // console.log("ID" + id + "がクリックされました。");
+                
+                $.ajax({
+                    url: "/display_posts",
+                    method: "GET",
+                    success: function(response) {
+                        $("body").html(response);
+                        // console.log("画面が更新されました。");
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        // console.log("更新エラーが発生しました。");
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                // console.log("エラーが発生しました。");
+            }
+            
+        });
+    });
+    
+    
+    $(".delete").on("click", function(){
+        console.log("削除が押されました。");
+        var id = $(this).attr("id");
+        var url = '/summary/' + id + '/delete';
+        console.log(url);
+        
+        $.ajax({
+            url: url,
+            method: "POST",
+            success: function(response){
+                console.log("ID" + id + "がクリックされました。");
+                
+                $.ajax({
+                    url: "/display_posts",
+                    method: "GET",
+                    success: function(response) {
+                        $("body").html(response);
+                        console.log("画面が更新されました。");
+                        
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("更新エラーが発生しました。");
+                    }
+                });
+            },
+            error: function(xhr, status, error) {
+                console.log("エラーが発生しました。");
+            }
+            
+        });
+    });
+    
+    
+});
+
+</script>

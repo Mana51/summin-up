@@ -1,0 +1,20 @@
+<div class="body">
+    <form class="generate-filter" action="/generate" method="post">
+        <h1>Generate article</h1>
+        <h2>Keyword</h2>
+        <input class="textbox-short" type="text" name="keyword" autocomplete="off"><br>
+        <h2>Difficulty</h2>
+        <select name="difficulty">
+            <% Difficulty.all.each do |dif| %>
+                <option value="<%= dif.id %>"><%= dif.difficulty %></option>
+            <% end %>
+            </select><br>
+        <h2>Word count</h2>
+        <select name="length">
+            <% Length.all.each do |len| %>
+                <option value="<%= len.id %>"><%= len.length %></option>
+            <% end %>
+        </select><br>
+        <input id="generate-button" type="submit" value="Generate">
+    </form>
+</div>

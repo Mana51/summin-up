@@ -1,0 +1,11 @@
+# Logfile created on 2023-08-02 07:19:15 +0000 by logger.rb/v1.4.3
+2023-08-02 07:19:16 +0000: create_text is nil. The text generation has failed.
+2023-08-02 07:21:01 +0000: API response: {"error"=>{"message"=>"You exceeded your current quota, please check your plan and billing details.", "type"=>"insufficient_quota", "param"=>nil, "code"=>"insufficient_quota"}}
+2023-08-02 07:21:01 +0000: create_text is nil. The text generation has failed.
+2023-08-02 07:21:10 +0000: API response: {"error"=>{"message"=>"You exceeded your current quota, please check your plan and billing details.", "type"=>"insufficient_quota", "param"=>nil, "code"=>"insufficient_quota"}}
+2023-08-02 07:21:10 +0000: create_text is nil. The text generation has failed.
+2023-08-02 07:26:06 +0000: API response: {"error"=>{"message"=>"You exceeded your current quota, please check your plan and billing details.", "type"=>"insufficient_quota", "param"=>nil, "code"=>"insufficient_quota"}}
+2023-08-02 07:26:06 +0000: create_text is nil. The text generation has failed.
+2023-08-02 07:28:17 +0000: API response: {"error"=>{"message"=>"You exceeded your current quota, please check your plan and billing details.", "type"=>"insufficient_quota", "param"=>nil, "code"=>"insufficient_quota"}}
+2023-08-02 07:28:17 +0000: create_text is nil. The text generation has failed.
+2023-08-02 07:44:55 +0000: API response: {"id"=>"chatcmpl-7j0pG4KEJ3KWiU7BAb8I9SP6BSJlT", "object"=>"chat.completion", "created"=>1690962290, "model"=>"gpt-3.5-turbo-0613", "choices"=>[{"index"=>0, "message"=>{"role"=>"assistant", "content"=>"Title: The Importance of Regular Testing\n\nArticle:\n\nTests play a crucial role in assessing a person's knowledge and understanding. Regular testing helps individuals gauge their progress and identify areas of improvement. Whether it's a school exam or an employment test, the results provide valuable feedback for both teachers and students. Testing also enhances memory retention as it prompts individuals to review and consolidate what they have learned. Moreover, it promotes a sense of accountability and allows individuals to measure their performance objectively. Therefore, embracing regular testing is essential for personal growth and development."}, "finish_reason"=>"stop"}], "usage"=>{"prompt_tokens"=>33, "completion_tokens"=>107, "total_tokens"=>140}}

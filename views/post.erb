@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="/css/post.css">
+
+<div class="body post-page">
+    <div class="text">
+        <p class="section-title">Atricle</p>
+        <p class="info">Keyword：<%= @keyword %></p><br>
+        <p class="info">Difficulty：<%= @difficulty %></p><br>
+        <p class="info">Word count：<%= @length %></p><br>
+        <p><%= @formatted_text %></p>
+    </div>
+   
+    
+    <div class="summary-area">
+        <p class="section-title">Your summary</p>
+         <form action="/post" method="post">
+            <input class="title" type="text" placeholder="Enter your summary title" name="title"><br>
+            <textarea class="summary" id="summary" name="summary" placeholder="Write a summary (aim for 1/3 of the original length)" oninput="limitWords()"></textarea><br>
+            <p class="wordCount">Word count: <span id="wordCount">0</span></p>
+            <input id="post-button" type="submit" value="Post">
+        </form>
+    </div>
+</div>
+
+<script>
+    function limitWords() {
+        var textarea = document.getElementById("summary");
+        var wordCountElement = document.getElementById("wordCount");
+        
+        var inputText = textarea.value;
+        var wordCount = inputText.trim().split(/\s+/).length;
+        
+        // if (wordCount > 100) {
+        //     var words = inputText.trim().split(/\s+/).slice(0, 100);
+        //     textarea.value = words.join(" ");
+        //     wordCount = 100;
+        // }
+        
+        wordCountElement.textContent = wordCount;
+    }
+</script>
+
+
