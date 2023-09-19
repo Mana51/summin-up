@@ -12,7 +12,10 @@ require 'zlib'
 # require 'httparty'
 # client = OpenAI::Client.new(access_token: "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")
 
-client = OpenAI::Client.new(access_token: "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")
+# client = OpenAI::Client.new(access_token: "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")
+
+client = OpenAI::Client.new(access_token: "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")
+
 
 configure do
   logger = Logger.new('sinatra.log')
@@ -123,6 +126,38 @@ get '/generate' do
 end
 
 
+# post '/generate' do
+#     len = Length.find_by(id: params[:length])
+#     dif = Difficulty.find_by(id: params[:difficulty])
+#     length = len.length
+#     difficulty = dif.difficulty
+#     prompt = "Generate an article related to #{params[:keyword]} in #{length} words, with a vocabulary difficulty level of #{difficulty} out of 5."
+#     client = OpenAI::Client.new
+#     create_text = nil
+#     Thread.new do  
+#         response = client.chat(
+#           parameters: {
+#             model: "gpt-3.5-turbo",
+#             messages: [{ role: "user", content: prompt }],
+#             temperature: 0.9
+#         })
+#         create_text = response.dig("choices", 0, "message", "content")
+
+#     end.join 
+    
+#     result = create_text.gsub("\n", "<br>") 
+#     compressed_data = Zlib::Deflate.deflate(result)
+    
+    
+#     session[:formatted_text] = compressed_data
+#     session[:keyword] = params[:keyword]
+#     session[:length] = length
+#     session[:difficulty] = difficulty
+    
+    
+#     redirect '/create_post'
+# end
+
 post '/generate' do
     len = Length.find_by(id: params[:length])
     dif = Difficulty.find_by(id: params[:difficulty])
@@ -130,30 +165,41 @@ post '/generate' do
     difficulty = dif.difficulty
     prompt = "Generate an article related to #{params[:keyword]} in #{length} words, with a vocabulary difficulty level of #{difficulty} out of 5."
     client = OpenAI::Client.new
-    create_text = nil
-    Thread.new do  
+
+    begin
         response = client.chat(
-          parameters: {
-            model: "gpt-3.5-turbo",
-            messages: [{ role: "user", content: prompt }],
-            temperature: 0.9
-        })
+            parameters: {
+                model: "gpt-3.5-turbo",
+                messages: [{ role: "user", content: prompt }],
+                temperature: 0.9
+            }
+        )
         create_text = response.dig("choices", 0, "message", "content")
-    end.join 
-    
-    result = create_text.gsub("\n", "<br>") 
-    compressed_data = Zlib::Deflate.deflate(result)
-    
-    
+    rescue StandardError => e
+        # Handle the error, log it, or provide a fallback response.
+        create_text = "An error occurred: #{e.message}"
+    end
+
+    # Check if create_text is nil or an error message.
+    if create_text.nil? || create_text.start_with?("An error occurred")
+        create_text = "Failed to generate content."
+    else
+        # If create_text is not nil, perform the substitution.
+        create_text = create_text.gsub("\n", "<br>")
+    end
+
+    # You can also log the final create_text value for debugging.
+    puts "Final create_text: #{create_text.inspect}"
+
+    # Store the result in the session.
+    compressed_data = Zlib::Deflate.deflate(create_text)
     session[:formatted_text] = compressed_data
     session[:keyword] = params[:keyword]
     session[:length] = length
     session[:difficulty] = difficulty
-    
-    
+
     redirect '/create_post'
 end
-
 
 
 get '/create_post' do
