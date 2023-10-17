@@ -8,7 +8,7 @@ require 'sidekiq/api'
 require 'redis'
 require 'zlib'
 
-client = OpenAI::Client.new(access_token: "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")  #ChatGPT API
+client = OpenAI::Client.new(access_token: "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")  #ChatGPT API
 
 configure do
   logger = Logger.new('sinatra.log')
