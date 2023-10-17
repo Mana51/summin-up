@@ -38,7 +38,9 @@
 }
 
 #new-summary:hover {
-    font-weight: bold;
+    background-color: #DEDEDE;
+    border: solid;
+    border-width: thin;
 }
 
 #like {

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="/css/library.css">
+
+<div class="body">
+    <div id="summary-section">
+        <h1>Your past summaries</h1>
+        <% @user_sum.each do |sum| %>
+            <div id="summaries">
+                <p class="sumTitle"><%= sum.title %></p>
+                <p><%= sum.summary %></p>
+                <% summaryLike = Like.where(summary_id: sum.id).count %>
+                <img class="heart" src="/img/heart-filled.png">
+                <p class="likes-number"><%= summaryLike %> likes</p>
+            </div>
+            <div class="container">
+              <a href="/article/<%= sum.id %>" class="articleLink">
+                <span class="articleButton">Go to article</span>
+                <img src="/img/right-arrow.png" alt="Right Arrow">
+              </a>
+            </div>
+        <% end %>
+    </div> 
+
+    
+    
+</div>

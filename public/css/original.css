@@ -19,6 +19,7 @@ body {
 a {
   text-decoration: none;
   color: black;
+  font-size: 18px;
 }
 
 h1 {
@@ -27,6 +28,10 @@ h1 {
 
 h2 {
   font-weight: normal;
+}
+
+p{
+  font-size: 18px;
 }
 
 .info {
@@ -110,7 +115,7 @@ nav {
   border-width: thin;
 }
 
-.generateButton {
+.libraryButton {
   font-size: 16px;
   border-radius: 20px;
   background-color: #DEEFFF;
@@ -120,16 +125,26 @@ nav {
   left: 268px;
 }
 
-.generateButton:hover {
+.libraryButton:hover {
   background-color: #DEDEDE;
   border: solid;
   border-width: 1px;
 }
 
-#generateButtons {
-  position: absolute;
-  top: 30px;
-  left: 310px;
+.generateButton {
+  font-size: 16px;
+  border-radius: 20px;
+  background-color: #DEEFFF;
+  padding: 10px 20px 10px 20px;
+  position: fixed;
+  top: 15px;
+  left: 400px;
+}
+
+.generateButton:hover {
+  background-color: #DEDEDE;
+  border: solid;
+  border-width: 1px;
 }
 
 .signin-up {

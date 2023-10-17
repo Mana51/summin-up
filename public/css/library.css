@@ -1,0 +1,67 @@
+h1{
+    padding: 12px 0px 0px 20px;
+    margin: 0px;
+}
+
+#summary-section {
+    float:left;
+    width: 100%;
+    height: calc(100vh - 78px);
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#summaries {
+    margin: auto;
+    margin-top: 15px;
+    padding: 10px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 95%;
+}
+
+.sumTitle {
+    font-weight: bold;
+}
+
+.heart {
+    width: 20px;
+    float: left;
+    margin-top: 4px;
+    margin-right: 5px;
+    margin-left: 3px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px 20px 5px 5px; 
+}
+
+.articleLink {
+    display: flex;
+    align-items: center; 
+    background-color: #DEEFFF;
+    padding: 5px 15px 5px 15px;
+    border-radius: 10px;
+    border: solid 1px;
+    border-color: #DEEFFF;
+}
+
+.articleLink:hover {
+    background-color: #DEDEDE;
+    border-color: #000000;
+}
+
+.articleButton {
+  font-weight: bold;
+  width: 100px;
+}
+
+img {
+  width: 20px; 
+  margin-left: 5px; 
+}
+

@@ -49,35 +49,26 @@
 <script>
 
 $(document).ready(function() {
-    // console.log("画面読み込み");
     
     $(".heart").on("click", function(){
-        // console.log("いいねが押されました。");
         var id = $(this).attr("id");
         var url = '/likes/' + id;
-        // console.log(url);
         
         $.ajax({
             url: url,
             method: "POST",
             success: function(response){
-                // console.log("ID" + id + "がクリックされました。");
-                
                 $.ajax({
                     url: "/display_posts",
                     method: "GET",
                     success: function(response) {
                         $("body").html(response);
-                        // console.log("画面が更新されました。");
-                        
                     },
                     error: function(xhr, status, error) {
-                        // console.log("更新エラーが発生しました。");
                     }
                 });
             },
             error: function(xhr, status, error) {
-                // console.log("エラーが発生しました。");
             }
             
         });
@@ -85,32 +76,24 @@ $(document).ready(function() {
     
     
     $(".delete").on("click", function(){
-        console.log("削除が押されました。");
         var id = $(this).attr("id");
         var url = '/summary/' + id + '/delete';
-        console.log(url);
         
         $.ajax({
             url: url,
             method: "POST",
             success: function(response){
-                console.log("ID" + id + "がクリックされました。");
-                
                 $.ajax({
                     url: "/display_posts",
                     method: "GET",
                     success: function(response) {
                         $("body").html(response);
-                        console.log("画面が更新されました。");
-                        
                     },
                     error: function(xhr, status, error) {
-                        console.log("更新エラーが発生しました。");
                     }
                 });
             },
             error: function(xhr, status, error) {
-                console.log("エラーが発生しました。");
             }
             
         });

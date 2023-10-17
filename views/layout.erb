@@ -18,9 +18,8 @@
             <a class="status grey" href="/signin">Log in</a> 
         <% else %>
             <% if @page=="home" or @page=="filtered" %>
-                <div id="generateButtons">
+                    <a class="libraryButton" href="/library">Library</a>
                     <a class="generateButton" href="/generate">Generate article</a>
-                </div>
             <% end %>
             <a class="status grey" href="/signout">Log out</a>
         <% end %>    
