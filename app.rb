@@ -8,7 +8,7 @@ require 'sidekiq/api'
 require 'redis'
 require 'zlib'
 
-API_KEY = "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"
+# API_KEY = "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"
 
 configure do
   logger = Logger.new('sinatra.log')
