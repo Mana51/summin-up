@@ -8,7 +8,7 @@ require 'sidekiq/api'
 require 'redis'
 require 'zlib'
 
-
+API_KEY = "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"
 
 configure do
   logger = Logger.new('sinatra.log')
@@ -165,7 +165,7 @@ end
 
 
 post '/generate' do
-    client = OpenAI::Client.new(access_token: "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")  #ChatGPT API
+    client = OpenAI::Client.new(access_token: API_KEY)  #ChatGPT API
     len = Length.find_by(id: params[:length])
     dif = Difficulty.find_by(id: params[:difficulty])
     length = len.length
