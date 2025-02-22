@@ -6,6 +6,7 @@ body {
   font-family: "Zen Kaku Gothic New", sans-serif, sans-serif;
   height: 800px;
   margin: 0;
+  color: #252323;
 }
 
 * {
@@ -18,7 +19,7 @@ body {
 
 a {
   text-decoration: none;
-  color: black;
+  color: #252323;
   font-size: 18px;
 }
 
@@ -33,11 +34,6 @@ h2 {
 p{
   font-size: 18px;
 }
-
-.info {
-  font-weight: bold;
-}
-
 
 .section-title{
   margin-top: 0px;
@@ -59,7 +55,7 @@ p{
 .black-bottom-border{
   border-bottom-style: solid;
   border-width: 1px;
-  border-bottom-color: #000000;
+  border-bottom-color: #252323; 
   
 }
 
@@ -94,71 +90,92 @@ nav {
   z-index: 1;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.nav-left{
+  text-align: left;
+}
+
 #title {
   font-family: 'Megrim', cursive;
   font-size: 35px;
-  float: left;
-  margin: 15px 0px 0px 40px;
+  margin: auto 25px auto 25px;
+  min-width: 200px;
 }
 
-.status {
-  float: right;
-  font-size: 16px;
-  margin: 25px 40px 0px 0px;
-  padding: 10px;
-  border-radius: 15px;
-}
-
-.status:hover {
-  background-color: #DEDEDE;
-  border: solid;
-  border-width: thin;
-}
-
-.libraryButton {
-  font-size: 16px;
-  border-radius: 20px;
-  background-color: #DEEFFF;
-  padding: 10px 20px 10px 20px;
-  position: fixed;
-  top: 15px;
-  left: 268px;
-}
-
-.libraryButton:hover {
-  background-color: #DEDEDE;
-  border: solid;
-  border-width: 1px;
-}
 
 .generateButton {
-  font-size: 16px;
+  font-size: 18px;
   border-radius: 20px;
   background-color: #DEEFFF;
   padding: 10px 20px 10px 20px;
-  position: fixed;
-  top: 15px;
-  left: 400px;
+  border: solid;
+  border-width: 1px;
+  border-color: #ffffff;
 }
 
 .generateButton:hover {
   background-color: #DEDEDE;
+  border-color: #252323;
+}
+
+.nav-right{
+  text-align: right;
+}
+
+.account {
+  margin: 0px 35px 0px 0px;
+  padding: 10px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  border: solid;
+  border-color: #ffffff;
+  border-width: 1px;
+}
+
+.account:hover {
+  background-color: #DEDEDE;
+  border-color: #252323;
+}
+
+.libraryButton {
+  font-size: 18px;
+  border-radius: 20px;
+  padding: 10px;
+  margin-right: 25px;
+  box-sizing: border-box;
   border: solid;
   border-width: 1px;
+  border-color: #ffffff;
+}
+
+.libraryButton:hover {
+  background-color: #DEDEDE;
+  border-color: #252323;
 }
 
 .signin-up {
   text-align: center;
-  padding: 150px; 
+  /*padding: 150px; */
+  position: absolute;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0px;
 }
 
 .textbox {
   font-size: 25px;
   text-align: center;
-  width: 480px;
+  width: 380px;
   height: 50px;
   border-style: solid;
-  border-color: #000000;
+  border-color: #252323;
   border-width: 1px;
   border-radius: 15px;
   background-color: #F5F5F5;
@@ -171,7 +188,7 @@ nav {
   width: 240px;
   height: 50px;
   border-style: solid;
-  border-color: #000000;
+  border-color: #252323;
   border-width: 1px;
   border-radius: 15px;
   background-color: #F5F5F5;
@@ -192,7 +209,7 @@ nav {
   border: solid;
 }
 
-.generate-filter {
+.generate-search {
   text-align: center;
   padding: 30px; 
 }
@@ -203,7 +220,7 @@ select {
   width: 150px;
   height: 40px;
   border-style: solid;
-  border-color: #000000;
+  border-color: #252323;
   border-width: 1px;
   border-radius: 15px;
   background-color: #F5F5F5;
@@ -229,7 +246,11 @@ select {
   font-size: 100px;
 }
 
-.filter-img {
+#homeTitle{
+  margin-top: 150px;
+}
+
+.search-img {
   height: 28px;
   margin-right: 5px;
 }
@@ -246,23 +267,17 @@ select {
     align-items: center;
 }
 
-
-.filterButton {
-  height: 50px;
-}
-
-#filter {
-  float: right;
+#search {
   border-radius: 20px;
   background-color: #DEEFFF;
   padding: 10px 20px 10px 20px;
-  position: fixed;
-  top: 90px;
+  position: absolute;
+  top: 100px;
   right: 25px;
-  z-index: 1;
+  z-index: 0;
 }
 
-#filter:hover {
+#search:hover {
   background-color: #DEDEDE;
   border: solid;
   border-width: 1px;
@@ -279,7 +294,7 @@ select {
     border: solid;
     border-width: 1px;
     /*border-color: #E1E1E1;*/
-    border-color: #000000;
+    border-color: #252323;
     border-radius: 10px;
     display: inline-block;
     margin-left: 10px;
@@ -294,6 +309,7 @@ select {
 .info {
   font-weight: bold;
   margin-top: 0px;
+  margin-bottom: 5px;
 }
 
  
@@ -321,7 +337,7 @@ select {
 }
 .post.display::after {
         pointer-events: none;
-  color: #000000;
+  color: #252323;
   content: "Read More";
   font-size: 22px;
   font-weight: bold;

@@ -1,13 +1,14 @@
-<link rel="stylesheet" href="/css/filtered.css">
+<link rel="stylesheet" type="text/css" href="/css/home.css">
+<link rel="shortcut icon" href="/favicon.ico">
 
 <div class="body">
-    <h1>Look for an article to summarize:</h1>
-    <div class="filterButton">
-        <a class="nav-link nav-button" id="filter" href="/filter"><img class="filter-img" src="img/filter.png" alt="Filter Icon" /> Filter</a><br>
+    <h1>Look for an article to summarize</h1>
+    <div class="searchButton">
+        <a class="nav-link nav-button" id="search" href="/search"><img class="search-img" src="/img/search.png" alt="Search Icon" /> Search</a><br>
     </div>
     <div class="posts-section">
         <% if @matches.empty? %>
-            <p id="filteredText">No matches found.</p>
+            <p id="searchedText">No matches found.</p>
         <% else %>
             <% @matches.each do |match| %>
                 <div class="post display" id="past-post">

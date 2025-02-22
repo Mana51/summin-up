@@ -1,20 +1,22 @@
+<link rel="shortcut icon" href="/favicon.ico">
+
 <div class="body">
-    <form class="generate-search" action="search" method="post">
-        <h1>Filter articles</h1>
+    <form class="generate-search" action="/search" method="post">
+        <h1>Search articles</h1>
         <h2>Keyword</h2>
-        <input class="textbox-short" type="text" name="keyword" autocomplete="off"><br>
-                <h2>Difficulty</h2>
-        <select class="form-select" name="list">
-            <% Difficulty.all.each do |difficulty| %>
-                <option value="<% difficulty.id %>"><%= difficulty.difficulty %></option>
-            <% end %>
+            <input class="textbox-short" type="text" name="keyword" autocomplete="off"><br>
+        <h2>Difficulty</h2>
+            <select class="form-select" name="difficulty">
+              <% Difficulty.all.each do |difficulty| %>
+                <option value="<%= difficulty.id.to_s %>"><%= difficulty.difficulty %></option>
+              <% end %>
             </select><br>
         <h2>Word count</h2>
-        <select name="length">
-            <% Length.all.each do |len| %>
-                <option value="<% len.id %>"><%= len.length %></option>
-            <% end %>
-        </select><br>
-        <input id="generate-button" type="submit" value="Filter">
+            <select name="length">
+                <% Length.all.each do |length| %>
+                    <option value="<%= length.id.to_s %>"><%= length.length %></option>
+                <% end %>
+            </select><br>
+        <input id="generate-button" type="submit" value="Search">
     </form>
 </div>

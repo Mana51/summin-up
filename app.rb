@@ -7,8 +7,12 @@ require 'sidekiq'
 require 'sidekiq/api'
 require 'redis'
 require 'zlib'
+require 'dotenv'
 
-# API_KEY = "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"
+Dotenv.load
+api_key = ENV["CHATGPT_API_KEY"]
+client = OpenAI::Client.new(access_token: api_key)
+
 
 configure do
   logger = Logger.new('sinatra.log')
@@ -26,16 +30,19 @@ enable :sessions
 
 
 get '/' do
+    @page = "signin"
   erb :sign_in
 end
 
 
 get '/signin' do
+    @page = "signin"
     erb :sign_in
 end
 
 
 get '/signup' do
+    @page = "signup"
     erb :sign_up
 end
 
@@ -44,7 +51,7 @@ post '/signin' do
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
         session[:user] = user.id
-        redirect '/home'
+        redirect '/home/newest'
     else
         redirect '/signin'
     end 
@@ -55,7 +62,7 @@ post '/signup' do
     user = User.create(username: params[:username], password: params[:password], password_confirmation: params[:password_confirmation])
     if user.persisted?
         session[:user] = user.id
-        redirect '/home'
+        redirect '/home/newest'
     else 
         redirect '/signup'
     end 
@@ -69,31 +76,35 @@ get '/signout' do
 end 
 
 
-get '/home' do
+get '/home/newest' do
     @posts = Post.all.sort.reverse
     @page = "home"
     erb :home
 end
 
-
-get '/filter' do
-    erb :filter
+get '/home/popular' do
+    posts = Post.all
+    @posts = posts.sort_by { |post| Summary.where(post_id: post.id).count }.reverse
+    @page = "home"
+    erb :home
 end
 
 
-post '/filter' do
-  result = Post.where(keyword: params[:keyword], difficulty_id: params[:difficulty], length_id: params[:length]).sort.reverse
-  compressed_data = Zlib::Deflate.deflate(result.to_json)  # 文字数が増えてデータ量が多くなるから圧縮
-  session[:matches] = compressed_data
-  redirect '/filtered'
+
+get '/search' do
+    erb :search
 end
 
 
-get '/filtered' do
-  @page = "filtered"
-  decompressed_data = Zlib::Inflate.inflate(session[:matches])
-  @matches = JSON.parse(decompressed_data)  # データを展開
-  erb :filtered
+post '/search' do
+    redirect "/searched/#{params[:keyword]}/#{params[:difficulty]}/#{params[:length]}"
+
+end
+
+
+get '/searched/:keyword/:difficulty/:length' do
+    @matches = Post.where(keyword: params[:keyword], difficulty_id: params[:difficulty], length_id: params[:length]).sort.reverse
+    erb :searched
 end
 
 
@@ -165,7 +176,6 @@ end
 
 
 post '/generate' do
-    client = OpenAI::Client.new(access_token: API_KEY)  #ChatGPT API
     len = Length.find_by(id: params[:length])
     dif = Difficulty.find_by(id: params[:difficulty])
     length = len.length

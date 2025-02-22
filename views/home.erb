@@ -1,12 +1,27 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="shortcut icon" href="/favicon.ico">
 
-<div class="body">
-    <h1>Look for an article to summarize:</h1>
-    <div class="filterButton">
+<div class="body" class="page-title">
+    <h1 id="homeTitle">Look for an article to summarize</h1>
+    <div class="searchButton">
         <span class="link-content">
-            <a class="nav-link" id="filter" href="/filter"><img class="filter-img" src="img/filter.png" alt="Filter Icon" /> Filter</a><br>
+            <a class="nav-link " id="search" href="/search"><img class="search-img" src="/img/search.png" alt="Search Icon" /> Search</a><br>
         </span>
     </div>
+    
+    <div class="gnavi__wrap">
+        <ul class="gnavi__lists">
+            <li class="gnavi__list">
+                <span class="link-content">
+                    <a class="nav-link " id="reorder" href="#"><img class="reorder-img" src="/img/reorder.png" alt="Reorder Icon" />Reorder</a>
+                </span>
+                <ul class="dropdown__lists">
+                    <li class="arrow dropdown__list"><a href="/home/newest">Newest</a></li>
+                    <li class="arrow dropdown__list"><a href="/home/popular">Popular</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>    
         <div class="posts-section">
             <% @posts.each do |post| %>
             <div class="post display" id="past-post">
@@ -18,7 +33,7 @@
                     <% dif = Difficulty.find_by(id: post.difficulty_id) %>
                     <p class="info">Difficulty: <%= dif.difficulty %></p>
                     <% len = Length.find_by(id: post.length_id) %>
-                    <p class="info">Length: <%= len.length %></p>
+                    <p class="info" id="length">Length: <%= len.length %></p>
                 </div>
                 <%= post.content %>
             </a>

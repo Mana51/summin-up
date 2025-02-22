@@ -1,3 +1,11 @@
+canvas {
+    position: absolute;
+    top: 150;
+    left: 0;
+    z-index: 3;
+}
+
+
 .info {
   margin: 0px;
 }

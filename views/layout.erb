@@ -8,21 +8,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Megrim&family=Montserrat&family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    <link rel="shortcut icon" href="/favicon.ico">
 </head>
 <body>
     <nav>
-        <a id="title" <% if session[:user] %> href="/home" <% end %>>Summin-up</a>
-        <% unless session[:user] %>
-            <a class="status grey" href="/signup">Sign up</a>
-            <a class="status grey" href="/signin">Log in</a> 
-        <% else %>
-            <% if @page=="home" or @page=="filtered" %>
-                    <a class="libraryButton" href="/library">Library</a>
-                    <a class="generateButton" href="/generate">Generate article</a>
-            <% end %>
-            <a class="status grey" href="/signout">Log out</a>
-        <% end %>    
+        <div class="navbar">
+            <div class="nav-left">
+                <a id="title" <% if session[:user] %> href="/home/newest" <% end %>>Summin-up</a>
+                <% if session[:user] %><% if @page=="home" or @page=="filtered" %><a class="generateButton nav-left" href="/generate">Generate article</a><% end %><% end %>
+            </div>
+            <div class="nav-right">
+                <% unless session[:user] %>
+                    <% if @page=="signin" %>
+                        <a class="account" href="/signup">Sign up</a>
+                    <% elsif @page=="signup" %>
+                        <a class="account" href="/signin">Log in</a> 
+                    <% end %>
+                <% else %>
+                    <% if @page=="home" or @page=="filtered" %>
+                        <a class="libraryButton" href="/library">Library</a>    
+                    <% end %>
+                    <a class="account" href="/signout">Log out</a>
+                <% end %> 
+            </div>
+        </div>
     </nav>
     
     <%= yield %>

@@ -23,6 +23,17 @@ class Difficulty < ActiveRecord::Base
 end
 
 class Post < ActiveRecord::Base
+    
+    def to_json(options = {})
+    {
+      id: id,
+      content: content,
+      keyword: keyword,
+      difficulty_id: difficulty_id,
+      length_id: length_id
+    }.to_json(options)
+    end
+  
     has_many :summaries
     belongs_to :length
     belongs_to :difficulty

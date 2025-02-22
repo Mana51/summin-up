@@ -1,7 +1,108 @@
 h1 {
-    float: left;
-    margin: 0px;
-    padding-left: 20px;
-    padding-top: 12px;
-    font-size: 25px;
+    text-align: center;
+    margin-top: 120px;
+    font-size: 30px;
 }
+
+#length {
+    margin-bottom: 15px;
+}
+
+.reorder-img {
+    height: 28px;
+    margin-right: 5px;
+}
+
+#reorder {
+    border-radius: 20px;
+    background-color: #DEEFFF;
+    padding: 10px 20px 10px 20px;
+    position: absolute;
+    top: 10px;
+    right: -20px;
+    z-index: 0;
+}
+
+.gnavi__wrap {
+    position: absolute;
+    right: 200px;
+    top: 90px;
+}
+
+.dropdown__lists {
+    opacity: 0;
+    visibility: hidden;
+    width: 150px;
+    list-style-type: none;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: scaleY(0);
+    transform-origin: center top;
+    position: relative;
+    top: 42px;
+    left: 7px;
+}
+
+.gnavi__list:hover .dropdown__lists {
+    opacity: 1;
+    visibility: visible;
+    transform: scaleY(1);
+}
+
+.dropdown__list {
+    background-color: #DEDEDE;
+    height: 35px;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.dropdown__list:not(:first-child)::before {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.dropdown__list:hover {
+    background-color: #A0BED9;
+}
+
+.dropdown__list a {
+    display: flex;
+    padding-top: 2px;
+    padding-left: 10px;
+    color: black;
+    text-decoration: none;
+    position: relative;
+}
+
+.dropdown__list a::before {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+}
+
+/* Adjust the class name to "arrow" */
+.dropdown__list.arrow a::before {
+    border-top: 1.5px solid #000000;
+    border-left: 1.5px solid #000000;
+    transform: rotate(135deg);
+    position: absolute;
+    right: 15px;
+    top: calc(47%);
+}
+
+/* Additional styles for the arrow */
+.dropdown__list.arrow:hover {
+    /* Adjustments when the arrow is present and the item is hovered */
+    background-color: #A0BED9;
+}
+
+.gnavi__list {
+    list-style-type: none;
+}
+
+

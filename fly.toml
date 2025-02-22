@@ -1,0 +1,25 @@
+# fly.toml app configuration file generated for summin-up on 2024-02-27T10:23:48Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'summin-up'
+primary_region = 'sea'
+
+[build]
+
+[deploy]
+  release_command = 'rake db:migrate'
+
+[env]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  size = 'shared-cpu-1x'
